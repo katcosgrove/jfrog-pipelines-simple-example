@@ -15,8 +15,7 @@ resources:
   - name: challenge_webhook
     type: OutgoingWebhook
     configuration:
-      webhookName: challenge_webhook
-      path: /json
+      webhookName: challenge_webhooks
 pipelines:  
   - name: basic_pipeline
     configuration:
