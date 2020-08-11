@@ -55,10 +55,10 @@ pipelines:
       - name: step_3
         type: Bash
         configuration:
+          inputSteps:
+            - name: step_2
           outputResources:
             - name: challenge_webhook
-            inputSteps:
-              - name: step_2
         execution:
           onExecute:
             - jsonPayload="{\"runNumber\":\"$run_number\", \"stepName\":\"$step_name\"}"
