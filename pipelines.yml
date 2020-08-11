@@ -52,8 +52,7 @@ pipelines:
           onExecute:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
-
-      - name: my_send_hook_json
+      - name: step_3
         type: Bash
         configuration:
           outputResources:
@@ -67,33 +66,32 @@ pipelines:
           onSuccess:
             - echo "Payload sent by "$res_challenge_webhook_name":"
             - echo $res_My-Outgoing-JSON-Resource_payload
-
-      - name: step_3
+      - name: step_4
         type: Bash
         configuration:
           environmentVariables:
             step_env_var1: "hello"
           inputSteps:
-            - name: step_2
+            - name: step_3
         execution:
           onExecute:
             - echo $step_env_var1
-
-      - name: step_4
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step_2
-        execution:
-          onExecute:
-            - echo $app_version
 
       - name: step_5
         type: Bash
         configuration:
           inputSteps:
             - name: step_3
-            - name: step_4  
+        execution:
+          onExecute:
+            - echo $app_version
+
+      - name: step_6
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_4
+            - name: step_5  
           integrations:
             - name: my_github            
         execution:
