@@ -12,6 +12,11 @@ resources:
       sourceArtifactory: art
       buildName: SampleApp
       buildNumber: 1          
+  - name: challenge_webhook
+    type: OutgoingWebhook
+    configuration:
+      webhookName: challengee_webhook
+      path: /json
 pipelines:  
   - name: basic_pipeline
     configuration:
@@ -48,6 +53,21 @@ pipelines:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
 
+      - name: my_send_hook_json
+        type: Bash
+        configuration:
+          outputResources:
+            - name: MyOutgoingJSONResource
+        execution:
+          onExecute:
+            - jsonPayload="{\"runNumber\":\"$run_number\", \"stepName\":\"$step_name\"}"
+            - set_payload MyOutgoingJSONResource "$jsonPayload"
+          onFailure:
+            - export res_MyOutgoingJSONResource_skipWebHook=true
+          onSuccess:
+            - echo "Payload sent by "$res_MyOutgoingJSONResource_name":"
+            - echo $res_My-Outgoing-JSON-Resource_payload
+
       - name: step_3
         type: Bash
         configuration:
@@ -67,6 +87,7 @@ pipelines:
         execution:
           onExecute:
             - echo $app_version
+
       - name: step_5
         type: Bash
         configuration:
