@@ -15,7 +15,7 @@ resources:
   - name: challenge_webhook
     type: OutgoingWebhook
     configuration:
-      webhookName: challengee_webhook
+      webhookName: challenge_webhook
       path: /json
 pipelines:  
   - name: basic_pipeline
@@ -57,15 +57,15 @@ pipelines:
         type: Bash
         configuration:
           outputResources:
-            - name: MyOutgoingJSONResource
+            - name: challenge_webhook
         execution:
           onExecute:
             - jsonPayload="{\"runNumber\":\"$run_number\", \"stepName\":\"$step_name\"}"
-            - set_payload MyOutgoingJSONResource "$jsonPayload"
+            - set_payload challenge_webhook "$jsonPayload"
           onFailure:
-            - export res_MyOutgoingJSONResource_skipWebHook=true
+            - export res_challenge_webhook_skipWebHook=true
           onSuccess:
-            - echo "Payload sent by "$res_MyOutgoingJSONResource_name":"
+            - echo "Payload sent by "$res_challenge_webhook_name":"
             - echo $res_My-Outgoing-JSON-Resource_payload
 
       - name: step_3
