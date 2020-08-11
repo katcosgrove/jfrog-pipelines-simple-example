@@ -60,7 +60,7 @@ pipelines:
             - name: challenge_webhook
         execution:
           onExecute:
-            - jsonPayload="{\"runNumber\":\"$run_number\", \"stepName\":\"$step_name\"}"
+            - jsonPayload="{\"apiURL\":\"$pipelines_api_url\", \"stepName\":\"$step_name\"}"
             - set_payload challenge_webhook "$jsonPayload"
           onFailure:
             - export res_challenge_webhook_skipWebHook=true
