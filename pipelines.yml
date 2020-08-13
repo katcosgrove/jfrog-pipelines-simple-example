@@ -60,12 +60,12 @@ pipelines:
             - name: challenge_webhook
         execution:
           onExecute:
-            - jsonPayload="{\"apiURL\":\"$pipelines_api_url\", \"username\":\"$res_challenge_webhook_webhookName_username\", \"stepURL\":\"$step_url\"}"
+            - jsonPayload="{\"apiURL\":\"$pipelines_api_url\", \"username\":\"$res_challenge_webhook_webhookName_username\", \"stepName\":\"$step_name\", \"stepURL\":\"$step_url\"}"
             - set_payload challenge_webhook "$jsonPayload"
           onFailure:
             - export res_challenge_webhook_skipWebHook=true
           onSuccess:
-            - echo "Payload sent by "$res_challenge_webhook_name":"
+            - echo "Payload sent by $res_challenge_webhook_name:"
             - echo $res_My-Outgoing-JSON-Resource_payload
       - name: step_4
         type: Bash
