@@ -45,14 +45,14 @@ pipelines:
             type: image
             image:
               auto:
-                language: python
-                versions: ['3.6.4']
+                language: java
+                versions: ['11']
         execution:
           onExecute:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
-            - echo python --version
             - echo which python
+            - echo python --version
       - name: step_3
         type: Bash
         configuration:
