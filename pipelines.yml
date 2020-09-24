@@ -54,8 +54,6 @@ pipelines:
         configuration:
           inputSteps:
             - name: step_2
-          outputResources:
-            - name: challenge_webhook
         execution:
           onExecute:
             - echo "pee pee poo poo"
