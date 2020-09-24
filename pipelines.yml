@@ -48,9 +48,9 @@ pipelines:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
             - pip3 install pytest
-            - pytest --version
             - pwd
             - ls
+      - name: step_3
         type: Bash
         configuration:
           inputSteps:
