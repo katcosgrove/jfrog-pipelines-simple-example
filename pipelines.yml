@@ -47,8 +47,8 @@ pipelines:
           onExecute:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
-            - echo which python
-            - echo python --version
+            - which python
+            - python --version
       - name: step_3
         type: Bash
         configuration:
