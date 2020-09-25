@@ -47,9 +47,7 @@ pipelines:
           onExecute:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
-            - pip3 install pytest
-            - pwd
-            - ls
+            - python3 app.py
       - name: step_3
         type: Bash
         configuration:
