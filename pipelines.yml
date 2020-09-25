@@ -45,6 +45,7 @@ pipelines:
             - echo $run_var  
             - echo $res_myBuildInfo_buildNumber
             - pushd $res_myGitRepo_resourcePath
+            - apt install python3-pip
             - pip3 install pytest
             - pytest -v
 
