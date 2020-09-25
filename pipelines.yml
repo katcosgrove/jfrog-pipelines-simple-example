@@ -32,7 +32,8 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: myBuildInfo            
+            - name: myBuildInfo
+            - name: myGitRepo            
           runtime:
             type: image
             image:
